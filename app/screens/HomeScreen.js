@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet, Switch } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import ReactNativeCrossPicker from "react-native-cross-picker";
+// import ReactNativeCrossPicker from "react-native-cross-picker";
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -174,7 +174,7 @@ function HomeScreen(props) {
                     </View>
 
                     {/* Picker */}
-                    <View style={styles.pickerContainer}>
+                    {/* <View style={styles.pickerContainer}>
                         <ReactNativeCrossPicker
                             modalTextStyle={{ color: Colors.black }}
                             mainComponentStyle={styles.mainComponentStyle}
@@ -187,7 +187,7 @@ function HomeScreen(props) {
                             placeholder="Gool construction material(goolconstruction)"
                             modalMarginTop={"75%"}
                         />
-                    </View>
+                    </View> */}
 
                     {/* Options */}
                     {data.map((item, i) => (
