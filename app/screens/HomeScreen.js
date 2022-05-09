@@ -17,6 +17,8 @@ import Colors from '../config/Colors';
 
 function HomeScreen(props) {
 
+    const [cart, setCart] = useState(false)
+
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
@@ -38,28 +40,28 @@ function HomeScreen(props) {
 
     const socialLinks = [
         {
-            icon: 'facebook-square'
+            icon: require('../../assets/images/fb.png')
         },
         {
-            icon: 'instagram'
+            icon: require('../../assets/images/intsta.png')
         },
         {
-            icon: 'creditcard'
+            icon: require('../../assets/images/red.png')
         },
         {
-            icon: 'pushpin'
+            icon: require('../../assets/images/pin.png')
         },
         {
-            icon: 'pushpin'
+            icon: require('../../assets/images/q.png')
         },
         {
-            icon: 'facebook-square'
+            icon: require('../../assets/images/m.png')
         },
         {
-            icon: 'instagram'
+            icon: require('../../assets/images/b.png')
         },
         {
-            icon: 'dribbble-square'
+            icon: require('../../assets/images/basketball.png')
         },
     ]
 
@@ -173,21 +175,38 @@ function HomeScreen(props) {
                         </View>
                     </View>
 
-                    {/* Picker */}
-                    {/* <View style={styles.pickerContainer}>
-                        <ReactNativeCrossPicker
-                            modalTextStyle={{ color: Colors.black }}
-                            mainComponentStyle={styles.mainComponentStyle}
-                            modalComponentStyle={styles.modalComponentStyle}
-                            iconComponent={iconComponent}
-                            placeholderStyle={{ color: "black", fontSize: RFPercentage(1.9) }}
-                            textStyle={styles.modalTextStyle}
-                            items={items}
-                            setItem={setItem} selectedItem={selectedItem}
-                            placeholder="Gool construction material(goolconstruction)"
-                            modalMarginTop={"75%"}
-                        />
-                    </View> */}
+                    {/* Dropdown */}
+                    <View style={{ flexDirection: 'row', width: "90%", height: RFPercentage(6), backgroundColor: Colors.inputFieldBackgroundColor, marginTop: RFPercentage(3), borderRadius: RFPercentage(1.5), justifyContent: 'flex-start', alignItems: 'center' }} >
+                        <Text style={{ marginLeft: RFPercentage(1.5) }} >
+                            Gool Construction Material (goolconstruction)
+                        </Text>
+
+                        {cart === false ?
+                            <TouchableOpacity onPress={() => setCart(true)} activeOpacity={0.8} style={{ position: 'absolute', right: RFPercentage(2) }} >
+                                <AntDesign name="down" style={{ fontSize: RFPercentage(1.6) }} color={Colors.black} />
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity onPress={() => setCart(false)} activeOpacity={0.8} style={{ position: 'absolute', right: RFPercentage(2) }} >
+                                <AntDesign name="up" style={{ fontSize: RFPercentage(1.6) }} color={Colors.black} />
+                            </TouchableOpacity>
+                        }
+                    </View>
+
+                    {/* Cart */}
+                    {cart ?
+
+                        <View style={{ width: "90%", height: RFPercentage(25), backgroundColor: Colors.inputFieldBackgroundColor, marginTop: RFPercentage(0.4), borderRadius: RFPercentage(1.5), justifyContent: 'flex-start', alignItems: 'flex-start' }} >
+                            <View style={{ width: '90%', alignSelf: 'center' }} >
+                                <Text style={{ marginTop: RFPercentage(3), fontSize: RFPercentage(2) }} >
+                                    - List
+                                </Text>
+                            </View>
+                        </View>
+                        :
+                        null
+                    }
+
+
 
                     {/* Options */}
                     {data.map((item, i) => (
@@ -210,8 +229,9 @@ function HomeScreen(props) {
                     {/* Social Links */}
                     <View style={{ marginTop: RFPercentage(7), width: '90%', justifyContent: 'space-between', alignItems: 'center', alignSelf: 'center', flexDirection: 'row' }} >
                         {socialLinks.map((item, i) => (
-                            <TouchableOpacity activeOpacity={0.7} key={i} style={{ justifyContent: 'center', alignItems: 'center', width: RFPercentage(5.6), height: RFPercentage(5.6), borderRadius: RFPercentage(10), backgroundColor: '#f1f1f1' }} >
-                                <AntDesign name={item.icon} style={{ fontSize: RFPercentage(2.3) }} color={Colors.black} />
+                            <TouchableOpacity activeOpacity={0.7} key={i} style={{ justifyContent: 'center', alignItems: 'center' }} >
+                                {/* <AntDesign name={item.icon} style={{ fontSize: RFPercentage(2.3) }} color={Colors.black} /> */}
+                                <Image style={{ width: RFPercentage(6), height: RFPercentage(6) }} source={item.icon} />
                             </TouchableOpacity>
                         ))}
                     </View>
